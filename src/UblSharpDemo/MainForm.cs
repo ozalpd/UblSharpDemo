@@ -1,6 +1,7 @@
 ﻿using System.Xml.Serialization;
 using UblSharp;
 using UblSharp.CommonAggregateComponents;
+using UblSharpDemo.Models;
 
 namespace UblSharpDemo
 {
@@ -9,17 +10,17 @@ namespace UblSharpDemo
         public MainForm()
         {
             InitializeComponent();
+            Expenses = new List<Expense>();
         }
+
+        public List<Expense> Expenses { get; set; }
 
         private void btnListFiles_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtDirPath.Text))
+            var folderBrowserDlg = new FolderBrowserDialog();
+            if (folderBrowserDlg.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("A directory path is needed to list some XML files!",
-                                "Empty Directory Path",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Exclamation);
-                return;
+                txtDirPath.Text = folderBrowserDlg.SelectedPath;
             }
 
             var files = Directory.GetFiles(txtDirPath.Text, "*.xml");
@@ -55,12 +56,10 @@ namespace UblSharpDemo
 
         public void ReadInvoice(InvoiceType invoice)
         {
-            var invoiceId = invoice.ID;
-            var lines = invoice.InvoiceLine;
-            var currencyCode = invoice.DocumentCurrencyCode;
+            var invoiceId = invoice.ID.Value;
+            if (Expenses.Any(e => e.IssueNumber == invoiceId))
+                return;
 
-
-            var isseuDate = invoice.IssueDate.Value.ToString("dd.MM.yyyy");
             var biller = invoice.AccountingSupplierParty.Party;
             var billerIds = biller.PartyIdentification;
             var taxNr = billerIds.FirstOrDefault(pi => pi.ID.schemeID.Equals("VKN"));
@@ -69,35 +68,42 @@ namespace UblSharpDemo
                 taxNr = billerIds.FirstOrDefault(pi => pi.ID.schemeID.Equals("TCKN"));
             }
 
-            var agent = biller.AgentParty;
-            var uuid = invoice.UUID.Value;
+            var expense = new Expense(invoice.IssueDate.Value, invoiceId, taxNr.ID.Value, invoice.UUID.Value);
+            Expenses.Add(expense);
 
-            txtStatus.Text = $"Tax Nr: {taxNr.ID.Value} \r\nIssue Date: {isseuDate} \r\nUUID: {uuid} ";
+            txtStatus.Text += $"{expense.IssueDateText}\t{expense.IssueNumber}\t{expense.TaxNr}";
+
             var taxes = invoice.TaxTotal;
-
             foreach (var tax in taxes)
             {
-                DisplayTax(tax);
+                AppendTax(expense, tax);
             }
+            txtStatus.Text += $"\t{expense.GetTaxableAmountText(18)}" +
+                $"\t{expense.GetTaxableAmountText(8)}\t{expense.GetTaxableAmountText(1)}" +
+                $"\t{expense.GetTaxableAmountText(0)}\t{expense.UUID}";
+
+            txtStatus.Text += $"\t\t{expense.GetTaxAmountText(18)}" +
+                $"\t\t{expense.GetTaxAmountText(8)}\t\t{expense.GetTaxAmountText(1)}";
+
+            txtStatus.Text += "\r\n";
         }
 
-        private void DisplayTax(TaxTotalType? tax)
+        private void AppendTax(Expense expense, TaxTotalType? tax)
         {
-            txtStatus.Text += $"\r\nTotal Tax: {tax.TaxAmount.Value} {tax.TaxAmount.currencyID}";
-            foreach (var item in tax.TaxSubtotal)
+            //txtStatus.Text += $"\r\nTotal Tax: {tax.TaxAmount.Value} {tax.TaxAmount.currencyID}";
+            foreach (var subTax in tax.TaxSubtotal)
             {
-                DisplayTax(item);
+                AppendTax(expense, subTax);
             }
         }
 
-        private void DisplayTax(TaxSubtotalType tax)
+        private void AppendTax(Expense expense, TaxSubtotalType tax)
         {
             var taxAmount = tax.TaxAmount.Value;
             var taxableAmount = tax.TaxableAmount.Value;
-            var taxRate = tax.Percent.Value;
+            int taxRate = (int)tax.Percent.Value;
 
-            txtStatus.Text += $"\r\nTax {taxRate}% {taxAmount} {tax.TaxAmount.currencyID}";
-            txtStatus.Text += $",  Taxable {taxRate}: {taxableAmount} {tax.TaxAmount.currencyID}";
+            expense.AddTax(taxRate, taxableAmount, taxAmount);
         }
     }
 }

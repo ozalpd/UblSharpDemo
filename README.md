@@ -8,4 +8,4 @@ A simple application to read xml formatted invoice files.
 
 ## License
 
-[The MIT License (MIT)](LICENSE)
+[The MIT License (MIT)](LICENSE.md)

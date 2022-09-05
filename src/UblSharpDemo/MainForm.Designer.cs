@@ -38,50 +38,52 @@
             // 
             this.txtDirPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDirPath.Location = new System.Drawing.Point(104, 12);
+            this.txtDirPath.Location = new System.Drawing.Point(114, 12);
             this.txtDirPath.Name = "txtDirPath";
-            this.txtDirPath.Size = new System.Drawing.Size(485, 23);
+            this.txtDirPath.ReadOnly = true;
+            this.txtDirPath.Size = new System.Drawing.Size(475, 23);
             this.txtDirPath.TabIndex = 0;
             // 
             // btnListFiles
             // 
             this.btnListFiles.Location = new System.Drawing.Point(12, 12);
             this.btnListFiles.Name = "btnListFiles";
-            this.btnListFiles.Size = new System.Drawing.Size(75, 23);
+            this.btnListFiles.Size = new System.Drawing.Size(96, 23);
             this.btnListFiles.TabIndex = 1;
-            this.btnListFiles.Text = "List Files";
+            this.btnListFiles.Text = "Select Folder";
             this.btnListFiles.UseVisualStyleBackColor = true;
             this.btnListFiles.Click += new System.EventHandler(this.btnListFiles_Click);
             // 
             // lstFiles
             // 
-            this.lstFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.lstFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstFiles.FormattingEnabled = true;
             this.lstFiles.ItemHeight = 15;
             this.lstFiles.Location = new System.Drawing.Point(12, 41);
             this.lstFiles.Name = "lstFiles";
-            this.lstFiles.Size = new System.Drawing.Size(577, 199);
+            this.lstFiles.Size = new System.Drawing.Size(577, 259);
             this.lstFiles.TabIndex = 2;
             this.lstFiles.SelectedIndexChanged += new System.EventHandler(this.lstFiles_SelectedIndexChanged);
             // 
             // txtStatus
             // 
-            this.txtStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtStatus.Location = new System.Drawing.Point(12, 246);
+            this.txtStatus.Location = new System.Drawing.Point(12, 306);
             this.txtStatus.Multiline = true;
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
-            this.txtStatus.Size = new System.Drawing.Size(577, 192);
+            this.txtStatus.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtStatus.Size = new System.Drawing.Size(577, 285);
             this.txtStatus.TabIndex = 3;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(601, 450);
+            this.ClientSize = new System.Drawing.Size(601, 603);
             this.Controls.Add(this.txtStatus);
             this.Controls.Add(this.lstFiles);
             this.Controls.Add(this.btnListFiles);
