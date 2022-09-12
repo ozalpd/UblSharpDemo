@@ -7,11 +7,9 @@
             _taxes = new List<ExpenseTax>();
         }
 
-        public Expense(DateTimeOffset issueDate, string issueNumber, string taxNr, string uuid) : this()
+        public Expense(string issueNumber, string uuid) : this()
         {
-            IssueDate = issueDate;
             IssueNumber = issueNumber;
-            TaxNr = taxNr;
             UUID = uuid;
         }
 
@@ -41,6 +39,7 @@
         public IEnumerable<ExpenseTax> Taxes => _taxes;
         private List<ExpenseTax> _taxes;
 
+        public string BillerName { get; set; }
         public DateTimeOffset IssueDate { get; set; }
         public string IssueDateText => IssueDate.ToString("dd.MM.yyyy");
         public string IssueNumber { get; set; }
