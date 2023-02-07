@@ -68,11 +68,12 @@ namespace UblSharpDemo
                 taxNr = billerIds.FirstOrDefault(pi => pi.ID.schemeID.Equals("TCKN"));
             }
 
+            var billerParty = biller != null ? biller.PartyName.FirstOrDefault() : null;
             var expense = new Expense(invoiceId, invoice.UUID.Value)
             {
-                BillerName = biller.PartyName.FirstOrDefault().Name,
+                BillerName = billerParty != null ? billerParty.Name : string.Empty,
                 IssueDate = invoice.IssueDate.Value,
-                TaxNr = taxNr.ID.Value,
+                TaxNr = taxNr != null ? taxNr.ID.Value : string.Empty
             };
             Expenses.Add(expense);
 
@@ -88,8 +89,8 @@ namespace UblSharpDemo
                 $"\t{expense.GetTaxableAmountText(0)}" +
                 $"\t{expense.BillerName}\t{expense.UUID}";
 
-            txtStatus.Text += $"\t\t{expense.GetTaxAmountText(18)}" +
-                $"\t\t{expense.GetTaxAmountText(8)}\t\t{expense.GetTaxAmountText(1)}";
+            txtStatus.Text += $"\t\t\t\t{expense.GetTaxAmountText(1)}" +
+                $"\t\t{expense.GetTaxAmountText(8)}\t\t{expense.GetTaxAmountText(18)}";
 
             txtStatus.Text += "\r\n";
         }
