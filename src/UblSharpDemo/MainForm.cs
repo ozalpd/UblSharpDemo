@@ -84,13 +84,13 @@ namespace UblSharpDemo
             {
                 AppendTax(expense, tax);
             }
-            txtStatus.Text += $"\t{expense.GetTaxableAmountText(18)}" +
-                $"\t{expense.GetTaxableAmountText(8)}\t{expense.GetTaxableAmountText(1)}" +
+            txtStatus.Text += $"\t{expense.GetTaxableAmountText(20)}" +
+                $"\t{expense.GetTaxableAmountText(10)}\t{expense.GetTaxableAmountText(1)}" +
                 $"\t{expense.GetTaxableAmountText(0)}" +
                 $"\t{expense.BillerName}\t{expense.UUID}";
 
             txtStatus.Text += $"\t\t\t\t{expense.GetTaxAmountText(1)}" +
-                $"\t\t{expense.GetTaxAmountText(8)}\t\t{expense.GetTaxAmountText(18)}";
+                $"\t\t{expense.GetTaxAmountText(10)}\t\t{expense.GetTaxAmountText(20)}";
 
             txtStatus.Text += "\r\n";
         }
