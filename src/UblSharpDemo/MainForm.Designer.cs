@@ -28,70 +28,66 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtDirPath = new System.Windows.Forms.TextBox();
-            this.btnListFiles = new System.Windows.Forms.Button();
-            this.lstFiles = new System.Windows.Forms.ListBox();
-            this.txtStatus = new System.Windows.Forms.TextBox();
-            this.SuspendLayout();
+            txtDirPath = new TextBox();
+            btnListFiles = new Button();
+            lstFiles = new ListBox();
+            txtStatus = new TextBox();
+            SuspendLayout();
             // 
             // txtDirPath
             // 
-            this.txtDirPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDirPath.Location = new System.Drawing.Point(114, 12);
-            this.txtDirPath.Name = "txtDirPath";
-            this.txtDirPath.ReadOnly = true;
-            this.txtDirPath.Size = new System.Drawing.Size(475, 23);
-            this.txtDirPath.TabIndex = 0;
+            txtDirPath.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtDirPath.Location = new Point(114, 12);
+            txtDirPath.Name = "txtDirPath";
+            txtDirPath.ReadOnly = true;
+            txtDirPath.Size = new Size(1458, 23);
+            txtDirPath.TabIndex = 0;
             // 
             // btnListFiles
             // 
-            this.btnListFiles.Location = new System.Drawing.Point(12, 12);
-            this.btnListFiles.Name = "btnListFiles";
-            this.btnListFiles.Size = new System.Drawing.Size(96, 23);
-            this.btnListFiles.TabIndex = 1;
-            this.btnListFiles.Text = "Select Folder";
-            this.btnListFiles.UseVisualStyleBackColor = true;
-            this.btnListFiles.Click += new System.EventHandler(this.btnListFiles_Click);
+            btnListFiles.Location = new Point(12, 12);
+            btnListFiles.Name = "btnListFiles";
+            btnListFiles.Size = new Size(96, 23);
+            btnListFiles.TabIndex = 1;
+            btnListFiles.Text = "Select Folder";
+            btnListFiles.UseVisualStyleBackColor = true;
+            btnListFiles.Click += btnListFiles_Click;
             // 
             // lstFiles
             // 
-            this.lstFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstFiles.FormattingEnabled = true;
-            this.lstFiles.ItemHeight = 15;
-            this.lstFiles.Location = new System.Drawing.Point(12, 41);
-            this.lstFiles.Name = "lstFiles";
-            this.lstFiles.Size = new System.Drawing.Size(577, 259);
-            this.lstFiles.TabIndex = 2;
-            this.lstFiles.SelectedIndexChanged += new System.EventHandler(this.lstFiles_SelectedIndexChanged);
+            lstFiles.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lstFiles.FormattingEnabled = true;
+            lstFiles.ItemHeight = 15;
+            lstFiles.Location = new Point(12, 41);
+            lstFiles.Name = "lstFiles";
+            lstFiles.Size = new Size(1560, 259);
+            lstFiles.TabIndex = 2;
+            lstFiles.SelectedIndexChanged += lstFiles_SelectedIndexChanged;
             // 
             // txtStatus
             // 
-            this.txtStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtStatus.Location = new System.Drawing.Point(12, 306);
-            this.txtStatus.Multiline = true;
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.ReadOnly = true;
-            this.txtStatus.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtStatus.Size = new System.Drawing.Size(577, 285);
-            this.txtStatus.TabIndex = 3;
+            txtStatus.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            txtStatus.Location = new Point(12, 306);
+            txtStatus.Multiline = true;
+            txtStatus.Name = "txtStatus";
+            txtStatus.ReadOnly = true;
+            txtStatus.ScrollBars = ScrollBars.Both;
+            txtStatus.Size = new Size(1560, 543);
+            txtStatus.TabIndex = 3;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(601, 603);
-            this.Controls.Add(this.txtStatus);
-            this.Controls.Add(this.lstFiles);
-            this.Controls.Add(this.btnListFiles);
-            this.Controls.Add(this.txtDirPath);
-            this.Name = "MainForm";
-            this.Text = "OASIS UBL Invoice Reader";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1584, 861);
+            Controls.Add(txtStatus);
+            Controls.Add(lstFiles);
+            Controls.Add(btnListFiles);
+            Controls.Add(txtDirPath);
+            Name = "MainForm";
+            Text = "OASIS UBL Invoice Reader";
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
